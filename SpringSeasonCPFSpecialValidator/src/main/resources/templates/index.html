@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberValidator - EngComp</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --cyber-purple: #6c00ff;
+            --matrix-green: #00ff9d;
+            --dark-matter: #0a0a1a;
+            --circuit-orange: #ff6b00;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: 
+                radial-gradient(circle at 50% 50%, var(--dark-matter) 20%, #000 100%),
+                repeating-linear-gradient(45deg, 
+                    rgba(0, 243, 255, 0.05) 0px, 
+                    rgba(0, 243, 255, 0.05) 10px,
+                    transparent 10px,
+                    transparent 20px);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--neon-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de circuito animado */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggMHY4SDBNMCA4aDh2OE0wIDBoOHY4TTggOGg4djgiIHN0cm9rZT0iIzAwZjNmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            animation: circuitFlow 40s linear infinite;
+        }
+
+        @keyframes circuitFlow {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-50%,-50%); }
+        }
+
+        .container {
+            background: rgba(10, 10, 26, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 
+                0 0 30px rgba(0, 243, 255, 0.2),
+                inset 0 0 15px rgba(0, 243, 255, 0.1);
+            width: 100%;
+            max-width: 450px;
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            color: var(--matrix-green);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            position: relative;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-blue), transparent);
+        }
+
+        h3 {
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            color: var(--neon-blue);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 1rem;
+            color: var(--matrix-green);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Courier New', monospace;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--matrix-green);
+            box-shadow: 
+                0 0 15px rgba(0, 255, 157, 0.3),
+                inset 0 0 10px rgba(0, 255, 157, 0.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--cyber-purple) 0%, var(--circuit-orange) 100%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 25%, 
+                rgba(255,255,255,0.1) 50%, 
+                transparent 75%);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translate(-50%, -50%) rotate(45deg); }
+            100% { transform: translate(50%, 50%) rotate(45deg); }
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 5px 20px rgba(108, 0, 255, 0.4),
+                0 0 30px rgba(255, 107, 0, 0.3);
+        }
+
+        p {
+            margin-top: 1.5rem;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .valido {
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid var(--matrix-green);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+        }
+
+        .invalido {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid var(--circuit-orange);
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.8rem;
+                margin: 15px;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cyber Validator 2.0</h2>
+        <h3>Engenharia da Computação</h3>
+        
+        <div class="input-group">
+            <label for="rg"><span style="color: var(--circuit-orange);">➤</span> RG:</label>
+            <input type="text" id="rg" name="rg" placeholder="Insira o código RG">
+            <button type="button" onclick="validarRG()">Verificar Integridade</button>
+            <p id="resultadoRG"></p>
+        </div>
+
+        <div class="input-group">
+            <label for="cpf"><span style="color: var(--circuit-orange);">➤</span> CPF:</label>
+            <input type="text" id="cpf" name="cpf" placeholder="Insira o código CPF">
+            <button type="button" onclick="validarCPF()">Validar Sistema</button>
+            <p id="resultadoCPF"></p>
+        </div>
+    </div>
+
+</body>
+</html>
